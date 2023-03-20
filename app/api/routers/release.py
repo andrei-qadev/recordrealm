@@ -22,6 +22,7 @@ router = APIRouter(tags=["Release"])
             response_model=List[ReleaseOut]
             )
 async def find_release_by_barcode(barcode: str):
+    # TODO: return flag in_collection: boolean
     list_releases = await ReleaseManager.find_releases_by_barcode(barcode)
     return list_releases
 
@@ -32,6 +33,7 @@ async def find_release_by_barcode(barcode: str):
             response_model=ReleaseOut
             )
 async def get_release_by_id(release_id: int):
+    # TODO: return flag in_collection: boolean
     release = await ReleaseManager.get_release(release_id)
     return release
 

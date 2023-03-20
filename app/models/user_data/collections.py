@@ -16,11 +16,14 @@ class Item():
     user_id: int
     release_id: int
     condition: str
-    bought_for: int
+    bought_price: int
     comment: str
     is_for_sale: bool
     is_sold: bool
-    sold_for: int
+    sold_price: int
+
+
+# TODO: убрать таблицу Wishlist, добавить айтему параметр Status: (WANT_TO_BUY, IN_COLLECTION, FOR_SALE, SOLD, DELETED)
 
 
 collection_table = sqlalchemy.Table(
@@ -32,9 +35,9 @@ collection_table = sqlalchemy.Table(
     sqlalchemy.Column("user_id", sqlalchemy.ForeignKey("users.id"), nullable=False),
     sqlalchemy.Column("release_id", sqlalchemy.Integer, nullable=False),  # TODO: add foreign key to mb_data.release id
     sqlalchemy.Column("condition", sqlalchemy.Enum(ConditionType), nullable=False, default=ConditionType.mint.name),
-    sqlalchemy.Column("bought_for", sqlalchemy.Integer),
+    sqlalchemy.Column("bought_price", sqlalchemy.Integer),
     sqlalchemy.Column("comment", sqlalchemy.Text),
     sqlalchemy.Column("is_for_sale", sqlalchemy.Boolean, server_default='false'),
     sqlalchemy.Column("is_sold", sqlalchemy.Boolean, server_default='false'),
-    sqlalchemy.Column("sold_for", sqlalchemy.Integer),
+    sqlalchemy.Column("sold_price", sqlalchemy.Integer),
 )
