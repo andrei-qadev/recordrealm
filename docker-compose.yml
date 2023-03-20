@@ -1,0 +1,27 @@
+# https://github.com/khezen/compose-postgres
+version: '3.8'
+
+networks:
+  rr:
+    driver: bridge
+
+services:
+  rr_db:
+    image: postgres:14.1
+    container_name: rr_db
+    restart: unless-stopped
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+       - /Users/andreidenisenko/docker_volumes/rr/postgresql/data/:/var/lib/postgresql/data
+#      - /media/docker-volumes/mb_postgres/postgresql/data/:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - rr
+    healthcheck:
+      test: "pg_isready -q -U postgres"
+
+volumes:
+  postgres-data:

@@ -1,0 +1,11 @@
+sqlalchemy
+databases
+asyncpg
+psycopg2-binary
+python-decouple  # reading .env files
+alembic
+fastapi
+uvicorn
+email-validator
+passlib[bcrypt]  #  hashing passwords
+pyjwt  #  working with auth tokens
